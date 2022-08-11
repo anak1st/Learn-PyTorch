@@ -1,4 +1,4 @@
-# test for PyTorch CUDA
+# test for PyTorch & CUDA
 
 ## benchmark
 
