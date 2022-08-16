@@ -7,7 +7,7 @@ import torch.nn as nn
 gpu = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 
-def benchmark_pytorch_cuda(n):
+def pytorch_gpu(n):
     a = np.random.rand(n, n)
     b = np.random.rand(n, n)
     a = torch.tensor(a, device=gpu)
@@ -21,4 +21,4 @@ def benchmark_pytorch_cuda(n):
 
 
 if __name__ == '__main__':
-    benchmark_pytorch_cuda(15000)
+    pytorch_gpu(15000)
