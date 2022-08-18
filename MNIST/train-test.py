@@ -7,14 +7,16 @@ import torch.optim as optim
 import matplotlib.pyplot as plt
 
 
-n_epochs = 3
-batch_size_train = 64
+n_epochs = 15
+batch_size_train = 256
 batch_size_test = 1000
 learning_rate = 0.01
 momentum = 0.5
 log_interval = 10
 random_seed = 1
 torch.manual_seed(random_seed)
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(f"PyTorch will use {device}")
 
 
 transform = transforms.Compose(
@@ -71,6 +73,7 @@ class Net(nn.Module):
 
 
 network = Net()
+network.to(device)
 optimizer = optim.SGD(network.parameters(),
                       lr=learning_rate,
                       momentum=momentum)
@@ -85,6 +88,7 @@ test_counter = [i * len(train_loader.dataset) for i in range(n_epochs + 1)]
 def train(epoch):
     network.train()
     for batch_idx, (data, target) in enumerate(train_loader):
+        data, target = data.to(device), target.to(device)
         optimizer.zero_grad()
         output = network(data)
         loss = F.nll_loss(output, target)
@@ -107,6 +111,7 @@ def test():
     correct = 0
     with torch.no_grad():
         for data, target in test_loader:
+            data, target = data.to(device), target.to(device)
             output = network(data)
             test_loss += F.nll_loss(output, target, reduction='sum').item()
             pred = output.data.max(1, keepdim=True)[1]
