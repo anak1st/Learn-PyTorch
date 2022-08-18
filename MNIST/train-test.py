@@ -7,7 +7,7 @@ import torch.optim as optim
 import matplotlib.pyplot as plt
 
 
-n_epochs = 15
+n_epochs = 10
 batch_size_train = 256
 batch_size_test = 1000
 learning_rate = 0.01
