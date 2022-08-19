@@ -1,10 +1,13 @@
-# test for PyTorch & CUDA
+# Test for PyTorch
 
 ## benchmark
+
+## MNIST
+
+## OpenCV-Python (contrib)
 
 ## test
 
 - CUDA
 - cuDNN
 - PyTorch (GPU)
-- OpenCV-Python (contrib)
