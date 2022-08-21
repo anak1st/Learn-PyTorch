@@ -36,14 +36,14 @@ def pytorch_gpu(size, flag=False):
 
 
 if __name__ == '__main__':
-    size = 10000
-    # cost_cpu = 0
+    size = 5000
+    cost_cpu = 0
     cost_gpu = 0
     times = 5
     for i in range(0, times):
-        # cost_cpu += pytorch_cpu(size)
+        cost_cpu += pytorch_cpu(size)
         cost_gpu += pytorch_gpu(size, True)
-    # cost_cpu /= times
+    cost_cpu /= times
     cost_gpu /= times
-    # print(f"CPU Elapsed Average time is {cost_cpu:.5f} s")
+    print(f"CPU Elapsed Average time is {cost_cpu:.5f} s")
     print(f"GPU Elapsed Average time is {cost_gpu:.5f} s")

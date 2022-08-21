@@ -1,6 +1,7 @@
 import time
 import numpy as np
 
+
 def numpy_cpu(size, flag=False):
     a = np.random.rand(size, size)
     b = np.random.rand(size, size)
@@ -11,6 +12,7 @@ def numpy_cpu(size, flag=False):
     if flag:
         print(f"CPU Elapsed time is {cost:.5f} s")
     return cost
+
 
 if __name__ == "__main__":
     size = 7500
