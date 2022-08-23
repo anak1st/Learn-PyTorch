@@ -1,29 +1,46 @@
+import random
 import torch
-from torch import nn
-from torch.utils.data import DataLoader
-from torchvision import datasets
-from torchvision.transforms import ToTensor
-from main import NeuralNetwork, test_data, model_path
+import matplotlib.pyplot as plt
 
-model = NeuralNetwork()
-model.load_state_dict(torch.load(model_path))
+from main import model_path, NeuralNetwork, test_data
+
 
 classes = [
     "T-shirt/top",
-    "Trouser",
-    "Pullover",
-    "Dress",
-    "Coat",
-    "Sandal",
-    "Shirt",
-    "Sneaker",
-    "Bag",
-    "Ankle boot",
+    "Trouser    ",
+    "Pullover   ",
+    "Dress      ",
+    "Coat       ",
+    "Sandal     ",
+    "Shirt      ",
+    "Sneaker    ",
+    "Bag        ",
+    "Ankle boot ",
 ]
 
+model = NeuralNetwork()
+model.load_state_dict(torch.load(model_path))
 model.eval()
-x, y = test_data[0][0], test_data[0][1]
-with torch.no_grad():
-    pred = model(x)
-    predicted, actual = classes[pred[0].argmax(0)], classes[y]
-    print(f'Predicted: "{predicted}", Actual: "{actual}"')
+
+def test(a, b):
+    l = len(test_data)
+    i = random.randint(0, l - a * b)
+    with torch.no_grad():
+        for j in range(a * b):
+            index = i + j
+            x, y = test_data[index][0], test_data[index][1]
+            pred = model(x)
+            predicted, actual = classes[pred[0].argmax(0)], classes[y]
+            flag = "Success" if predicted == actual else "Failure"
+            print(f"[{flag}] Predicted: {predicted}, Actual: {actual}")
+
+            plt.subplot(a, b, j + 1)
+            plt.tight_layout()
+            plt.imshow(x[0], cmap='gray', interpolation='none')
+            plt.title(f"P: {predicted}\nT: {actual}")
+            plt.xticks([])
+            plt.yticks([])
+        plt.show()
+
+if __name__ == "__main__":
+    test(3, 4)

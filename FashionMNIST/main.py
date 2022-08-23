@@ -4,8 +4,8 @@ from torch.utils.data import DataLoader
 from torchvision import datasets
 from torchvision.transforms import ToTensor
 
-batch_size = 64
-model_path = "model.pth"
+batch_size = 128
+model_path = "FashionMNIST\\model.pth"
 
 # Download training data from open datasets.
 training_data = datasets.FashionMNIST(
@@ -52,11 +52,11 @@ class NeuralNetwork(nn.Module):
 def train(dataloader, model, loss_fn, optimizer):
     size = len(dataloader.dataset)
     model.train()
-    for batch, (X, y) in enumerate(dataloader):
-        X, y = X.to(device), y.to(device)
+    for batch, (x, y) in enumerate(dataloader):
+        x, y = x.to(device), y.to(device)
 
         # Compute prediction error
-        pred = model(X)
+        pred = model(x)
         loss = loss_fn(pred, y)
 
         # Backpropagation
@@ -65,7 +65,7 @@ def train(dataloader, model, loss_fn, optimizer):
         optimizer.step()
 
         if batch % 100 == 0:
-            loss, current = loss.item(), batch * len(X)
+            loss, current = loss.item(), batch * len(x)
             print(f"loss: {loss:>7f}  [{current:>5d}/{size:>5d}]")
 
 
@@ -75,9 +75,9 @@ def test(dataloader, model, loss_fn):
     model.eval()
     test_loss, correct = 0, 0
     with torch.no_grad():
-        for X, y in dataloader:
-            X, y = X.to(device), y.to(device)
-            pred = model(X)
+        for x, y in dataloader:
+            x, y = x.to(device), y.to(device)
+            pred = model(x)
             test_loss += loss_fn(pred, y).item()
             correct += (pred.argmax(1) == y).type(torch.float).sum().item()
     test_loss /= num_batches
@@ -86,8 +86,8 @@ def test(dataloader, model, loss_fn):
 
 
 if __name__ == "__main__":
-    for X, y in test_dataloader:
-        print(f"Shape of X [N, C, H, W]: {X.shape}")
+    for x, y in test_dataloader:
+        print(f"Shape of x [N, C, H, W]: {x.shape}")
         print(f"Shape of y: {y.shape} {y.dtype}\n")
         break
 
