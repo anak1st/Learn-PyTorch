@@ -5,7 +5,7 @@ from torchvision import datasets
 from torchvision.transforms import ToTensor
 
 batch_size = 128
-model_path = "FashionMNIST\\model.pth"
+model_path = ".\\model.pth"
 
 # Download training data from open datasets.
 training_data = datasets.FashionMNIST(
@@ -29,6 +29,7 @@ test_dataloader = DataLoader(test_data, batch_size=batch_size)
 
 # Get cpu or gpu device for training.
 device = "cuda" if torch.cuda.is_available() else "cpu"
+
 
 # Define model
 class NeuralNetwork(nn.Module):
@@ -99,7 +100,7 @@ if __name__ == "__main__":
 
     loss_fn = nn.CrossEntropyLoss()
     optimizer = torch.optim.SGD(model.parameters(), lr=1e-3)
-    epochs = 20
+    epochs = 100
     run_train = True
     if run_train:
         for t in range(epochs):

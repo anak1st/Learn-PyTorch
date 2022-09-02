@@ -22,6 +22,7 @@ model = NeuralNetwork()
 model.load_state_dict(torch.load(model_path))
 model.eval()
 
+
 def test(a, b):
     l = len(test_data)
     i = random.randint(0, l - a * b)
@@ -41,6 +42,7 @@ def test(a, b):
             plt.xticks([])
             plt.yticks([])
         plt.show()
+
 
 if __name__ == "__main__":
     test(3, 4)
