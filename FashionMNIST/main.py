@@ -10,7 +10,7 @@ model_path = ".\\model.pth"
 
 # Download training data from open datasets.
 training_data = datasets.FashionMNIST(
-    root="data",
+    root="..\data",
     train=True,
     download=True,
     transform=ToTensor(),
@@ -18,7 +18,7 @@ training_data = datasets.FashionMNIST(
 
 # Download test data from open datasets.
 test_data = datasets.FashionMNIST(
-    root="data",
+    root="..\data",
     train=False,
     download=True,
     transform=ToTensor(),
