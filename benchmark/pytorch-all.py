@@ -16,7 +16,7 @@ def cross_product(size, device):
     c = a @ b
     end = time.perf_counter()
     cost = end - start
-    print(f"[{device}] time: {cost:.5f}(s)")
+    # print(f"[{device}] time: {cost:.5f}(s)")
     return cost
 
 
@@ -29,5 +29,5 @@ def loop_test(times, size, device):
 
 
 if __name__ == '__main__':
-    loop_test(100, 2000, gpu)
-    loop_test(100, 2000, cpu)
+    loop_test(20, 4000, gpu)
+    loop_test(20, 2000, cpu)

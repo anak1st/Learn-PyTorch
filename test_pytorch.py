@@ -4,13 +4,13 @@ import torch.backends.cudnn as cudnn
 
 def test_cuda():
     ok = torch.cuda.is_available()
-    print("PyTorch with CUDA is available:{}".format(ok))
+    print(f"PyTorch with CUDA is available: {ok}")
     gpu_name = torch.cuda.get_device_name(0)
-    print("GPU:{}".format(gpu_name))
+    print(f"GPU: {gpu_name}")
     cuda_v = torch.version.cuda
-    print("CUDA:{}".format(cuda_v))
+    print(f"CUDA: {cuda_v}")
     cudnn_v = cudnn.version()
-    print("cuDNN:{}".format(cudnn_v))
+    print(f"cuDNN: {cudnn_v}")
 
 
 if __name__ == "__main__":
