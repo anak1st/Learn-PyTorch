@@ -1,12 +1,14 @@
 {
+    "terminal.integrated.defaultProfile.windows": "conda pytorch",
     "terminal.integrated.profiles.windows": {
-        "PowerShell": {
+        "conda pytorch": {
             "path": "pwsh",
             "icon": "terminal-powershell",
             "args": [
                 "-noe",
                 "-c",
-                "conda activate pytorch"
+                "Start-Conda",
+                ";conda activate pytorch"
             ],
         }
     },
