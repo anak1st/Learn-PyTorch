@@ -134,3 +134,4 @@ dmypy.json
 # Data
 *.pth
 data/
+logs/
